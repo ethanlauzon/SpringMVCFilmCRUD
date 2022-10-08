@@ -40,6 +40,8 @@ public class Film {
 		this.name = name;
 		this.category = category;
 	}
+	
+
 
 	@Override
 	public String toString() {
