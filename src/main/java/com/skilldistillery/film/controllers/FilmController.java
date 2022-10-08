@@ -86,14 +86,6 @@ public class FilmController {
 		mv.setViewName("WEB-INF/film.jsp");
 		return mv;
 	}
-//	@RequestMapping(path = "deleteFilm ", method = RequestMethod.GET, params = " ")
-//	public ModelAndView deleteFilm() {
-//		ModelAndView mv = new ModelAndView();
-//		Film film = filmDao.deleteDBFilm(null);
-//		mv.addObject("film", film);
-//		mv.setViewName("WEB-INF/film.jsp");
-//		return mv;
-//	}
 
 	@RequestMapping(path = "findFilmByKeyword.do", method = RequestMethod.GET, params = "filmKeyword")
 	public ModelAndView searchByKey(String filmKeyword) {
