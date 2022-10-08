@@ -2,9 +2,31 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Film Database</title>
 </head>
 <body>
-	<h1>Film Site</h1>
+	<h1>E&T Film Database</h1>
+	<div>
+
+		<!-- Find by Keyword -->
+
+		<h3>Search by film ID:</h3>
+		<form action="findFilmById" method="get">
+			<label for="filmId">Film ID:</label> <input type="text" name="filmId">
+			<input type="submit" value="Search">
+		</form>
+	</div>
+	<!-- Find by Keyword -->
+	<div>
+		<h3>Search by keyword:</h3>
+		<form action="findFilmByKeyword" method="get">
+			<label for="filmKeyword">Keyword:</label> <input type="text"
+				name="filmKeyword"> <input type="submit" value="Search">
+		</form>
+	</div>
+	<div>
+		<h3><a href="NewFilmForm.html">Add a New Film:</a></h3>
+	</div>
 </body>
 </html>
+
