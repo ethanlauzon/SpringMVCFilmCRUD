@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,19 +8,22 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach var="f" items="${film}">
 		<ul>
+<c:forEach var = "f" items="${films}">
 			<li>"${f.toString()}"</li>
-		</ul>
-		<form action="deleteFilm"  method="POST">
-      <input type=“hidden” name=“filmId” value=“${f.id”} type="submit">
-      <br>
-        <form action="editFilm" method="GET">
-      <input type="hidden" name = "filmId" value=“${f.id”} type="submit">
-      </form>
-      <br>
-      </form>
 	</c:forEach>
+		</ul>
+			<form action="deleteFilm.do" method=POST>
+	Enter ID to delete film:
+		<input type="number" name="filmId">
+		<input type="submit" value="delete">
+	</form>
+	<br>
+	<form action="editFilm.do" method="GET">
+	Film ID to edit film:
+		<input type="number" name="filmId">
+		<input type="submit" value="edit">
+	</form>
 </body>
 </html>
 
