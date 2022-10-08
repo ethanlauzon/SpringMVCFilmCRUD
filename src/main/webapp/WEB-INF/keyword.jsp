@@ -4,23 +4,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Films results</title>
 </head>
+<title>Films with matching titles/keywords</title>
 <body>
-<c:forEach var="f" items="${film}">
+<c:forEach items="${film}">
 		<ul>
-			<li>"${f.toString()}"</li>
+			<li>"${film.toString()}"</li>
+			<br>
 		</ul>
-		<form action="deleteFilm"  method="POST">
-      <input type=“hidden” name=“filmId” value=“${f.id”} type="submit">
-      <br>
-        <form action="editFilm" method="GET">
-      <input type="hidden" name = "filmId" value=“${f.id”} type="submit">
-      </form>
-      <br>
-      </form>
 	</c:forEach>
+	<br>
+	<div>
+	<form action="deleteFilm.do" method=POST>
+	Enter ID to delete film:
+		<input type="number" name="filmId">
+		<input type="submit" value="delete">
+	</form>
+	<br>
+	<form action="editFilm.do" method="GET">
+	Film ID to edit film:
+		<input type="number" name="filmId">
+		<input type="submit" value="edit">
+	</form>
+	</div>
 </body>
 </html>
-
-

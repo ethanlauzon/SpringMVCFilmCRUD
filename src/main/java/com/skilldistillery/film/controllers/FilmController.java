@@ -93,14 +93,14 @@ public class FilmController {
 //		return mv;
 //	}
 
-//	@RequestMapping(path = "findFilmByKeyword ", method = RequestMethod.GET, params = " ")
-//	public ModelAndView searchByKey() {
-//		ModelAndView mv = new ModelAndView();
-//		Film film = filmDao.findFilmByKey(null);
-//		mv.addObject("film", film);
-//		mv.setViewName("WEB-INF/film.jsp");
-//		return mv;
-//	}
+	@RequestMapping(path = "findFilmByKeyword ", method = RequestMethod.GET, params = " ")
+	public ModelAndView searchByKey() {
+		ModelAndView mv = new ModelAndView();
+		Film film = filmDao.findFilmByKey(null);
+		mv.addObject("film", film);
+		mv.setViewName("WEB-INF/film.jsp");
+		return mv;
+	}
 
 	@RequestMapping(path = " ", method = RequestMethod.GET, params = " ")
 	public ModelAndView searchById() {
