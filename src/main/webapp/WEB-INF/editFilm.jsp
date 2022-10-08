@@ -5,38 +5,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <form action="updateFilm.do" method="POST">
-      <label for="title">Title:</label>
-      <input type="text" name="title" value="${film.title }"/>
-      <br>
-      <label for="description">Description:</label>
-      <input type="text" name="description" value="${film.description }"/>
-      <br>
-      <label for="releaseYear">Release Year:</label>
-      <input type="number" name="releaseYear" value="${film.releaseYear }"/>
-      <br>
-      <label for="language">Language ID:</label>
-      <input type="number" name="language" value="${film.language }"/>
-      <br>
-      <label for="rentalDuration">Rental Duration:</label>
-      <input type="number" name="rentalDuration" value="${film.rentalDuration}">
-      <br>
-      <label for="rentalRate">Rental Rate:</label>
-      <input type="number" name="rentalRate" value="${film.rentalRate}">
-      <br>
-      <label for="length">Length:</label>
-      <input type="number" name="length" value="${film.length}">
-      <br>
-      <label for="replacementCost">Replacement Cost:</label>
-      <input type="number" name="replacementCost" value="${film.replacementCost}">
-      <br>
-      <label for="rating">Rating:</label>
-      <input type="text" name="rating" value="${film.rating}">
-      <br>
-      <label for="specialFeatures">Special Features:</label>
-      <input type="text" name="specialFeatures" value="${film.specialFeatures}">
-      <br>
-      <input type="submit" value="Edit Film">   
-      </form>  
+
+<h2> Edit Film </h2>
+Film ID: ${film.id } <br>
+<form action="updateFilm.do" method="POST">
+	<br> Title:	<input type="text" name="title" value="${film.title }"/> 
+	<br> Description: <input type="text" name="description" value="${film.description }"/> 
+	<br> Release Year: <input type="text" name="releaseYear" value="${film.releaseYear }"/>
+	<br> Language ID: <input type="text" name="languageId" value="${film.languageId }"/>
+	<br> Rental Duration: <input type="text" name="rentalDuration" value="${film.rentalDuration }"/>
+	<br> Rental Rate: <input type="text" name="rentalRate" value="${film.rentalRate }"/>
+	<br> Length: <input type="text" name="length" value="${film.length }"/>
+	<br> Replacement Cost: <input type="text" name="replacementCost" value="${film.replacementCost }"/>
+	<br> Rating: <input type="text" name="rating" value="${film.rating }"/>
+	<input type="number" hidden="true" name="filmId" value="${film.id }">
+	<br> <input type="submit" value="Update" />
+	</form><br>
+	
+	</form> 
   </body>
 </html>
