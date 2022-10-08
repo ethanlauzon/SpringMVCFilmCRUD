@@ -5,13 +5,12 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import com.skilldistillery.film.data.FilmDAO;
 import com.skilldistillery.film.data.FilmDaoJdbcImpl;
-import com.skilldistillery.filmquery.entities.Film;
+import com.skilldistillery.film.entities.Film;
 
 public class FilmQueryApp {
 
-	FilmDAO db = new FilmDaoJdbcImpl();
+	FilmDaoJdbcImpl db = new FilmDaoJdbcImpl();
 
 	public static void main(String[] args) throws SQLException {
 		FilmQueryApp app = new FilmQueryApp();

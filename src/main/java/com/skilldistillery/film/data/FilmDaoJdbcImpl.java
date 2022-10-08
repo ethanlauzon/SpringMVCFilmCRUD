@@ -101,7 +101,13 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 	@Override
 	public Film updateFilm(int filmId, Film film) {
-		// TODO Auto-generated method stub
+		String user = "student";
+		String pass = "student";
+		String sql = "UPDATE FROM film WHERE film.id = ?";
+		
+		Connection conn = DriverManager.getConnection(URL, user, pass);
+		PreparedStatement pst = conn.prepareStatement(sql);
+		
 		return null;
 	}
 
