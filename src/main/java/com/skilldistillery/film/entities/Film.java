@@ -119,7 +119,7 @@ public class Film {
 		this.title = title;
 	}
 
-	protected String getDescription() {
+	public String getDescription() {
 		return description;
 	}
 

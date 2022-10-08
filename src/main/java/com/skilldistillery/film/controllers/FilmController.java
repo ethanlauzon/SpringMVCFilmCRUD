@@ -57,7 +57,7 @@ public class FilmController {
 //	}
 	
 	
-//	@RequestMapping(path = " ", method = RequestMethod.POST, params = "filmId")
+//	@RequestMapping(path = "editFilm.do ", method = RequestMethod.POST, params = "filmId")
 //	public ModelAndView updateFilm(int filmId, String title, String description, ) {
 //		ModelAndView mv = new ModelAndView();
 //		Film newFilm = new Film(0, title, description, description, filmId, filmId, filmId, filmId, filmId, description, description, null, title, description)
@@ -68,7 +68,7 @@ public class FilmController {
 //		return mv;
 //	}
 
-//	@RequestMapping(path = " ", method = RequestMethod.GET, params = " ")
+//	@RequestMapping(path = "deleteFilm ", method = RequestMethod.GET, params = " ")
 //	public ModelAndView deleteFilm() {
 //		ModelAndView mv = new ModelAndView();
 //		Film film = filmDao.deleteDBFilm(null);
@@ -77,7 +77,7 @@ public class FilmController {
 //		return mv;
 //	}
 
-//	@RequestMapping(path = " ", method = RequestMethod.GET, params = " ")
+//	@RequestMapping(path = "findFilmByKeyword ", method = RequestMethod.GET, params = " ")
 //	public ModelAndView searchByKey() {
 //		ModelAndView mv = new ModelAndView();
 //		Film film = filmDao.findFilmByKey(null);
