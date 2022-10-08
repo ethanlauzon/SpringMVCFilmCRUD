@@ -80,7 +80,7 @@ public class FilmQueryApp {
 		Film result = db.findFilmById(filmId);
 		if (result != null) {
 			System.out.println(result);
-			subMenu(result, input);
+			subMenu(result);
 		} else {
 			System.out.println("No match found.");
 		}
@@ -111,7 +111,7 @@ public class FilmQueryApp {
 		System.out.println("5 - Exit the application");
 	}
 
-	private void subMenu(Film film, Scanner input) {
+	private void subMenu(Film film) {
 		System.out.println("\nSelect an option:");
 		System.out.println("1 - View all film details");
 		System.out.println("2 - Return to the main menu");
@@ -127,7 +127,6 @@ public class FilmQueryApp {
 			break;
 		case 3:
 			System.out.println("Deleting film");
-			db.deleteDBFilm(deleteFilm(input));
 			break;
 		}
 	}
