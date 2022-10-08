@@ -60,8 +60,9 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			if (conn != null) {
-				try { conn.rollback();}
-				catch (SQLException b) {
+				try {
+					conn.rollback();
+				} catch (SQLException b) {
 					System.err.println("Error trying to rollback");
 				}
 			}
@@ -97,21 +98,45 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return false;
 	}
 
-//	@Override
-//	public Film updateFilm(int filmId, Film film) {
-//		String user = "student";
-//		String pass = "student";
-//		String sql = "UPDATE FROM film WHERE film.id = ?";
-//		
-////		Connection conn = DriverManager.getConnection(URL, user, pass);
-////		PreparedStatement pst = conn.prepareStatement(sql);
-////		pst.setInt(1, filmId);
-////		
-//		film.setId(newFilm.getTitle());
-//
-//		
-//		return null;
-//	}
+
+	@Override
+	public boolean updateFilm(int filmId, Film film) {
+		String user = "student";
+		String pass = "student";
+		String sql = "UPDATE film SET title = ?, description = ?, release_year = ?, language_id = ?, "
+				+ "rental_duration = ?, rental_rate = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ?,"
+				+ " WHERE film.id = ?";
+
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			PreparedStatement pst = conn.prepareStatement(sql);
+			conn.setAutoCommit(false);
+
+			pst.setString(1, film.getTitle());
+			pst.setString(2, film.getDescription());
+			pst.setString(3, film.getReleaseYear());
+			pst.setInt(4, film.getLanguageId());
+			pst.setInt(5, film.getRentalDuration());
+			pst.setDouble(6, film.getRentalRate());
+			pst.setInt(7, film.getLength());
+			pst.setDouble(8, film.getReplacementCost());
+			pst.setString(9, film.getRating());
+			pst.setString(10, film.getSpecialFeatures());
+			int uce = pst.executeUpdate();
+			pst.setInt(11, filmId);
+			if (uce == 1) {
+				System.out.println(uce + " Film Succesfully updated");
+				conn.commit();
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false; 
+		}
+
+		return false;
+	}
+
 
 	@Override
 	public Film findFilmById(int filmId) {
@@ -260,13 +285,5 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		}
 		return films;
 	}
-
-	@Override
-	public Film updateFilm(int filmId, Film film) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 
 }
