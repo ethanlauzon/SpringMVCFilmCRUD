@@ -11,11 +11,11 @@
 		<ul>
 			<li>"${f.toString()}"</li>
 		</ul>
-		<form action="deleteFilm" method="DELETE">
-      <input value="${f.id}" type="submit">
+		<form action="deleteFilm"  method="POST">
+      <input type=“hidden” name=“filmId” value=“${f.id”} type="submit">
       <br>
-        <form action="editFilm" method="EDIT">
-      <input value="${f.id}" type="submit">
+        <form action="editFilm" method="GET">
+      <input name = "filmId" value=“${f.id”} type="submit">
       </form>
       <br>
       </form>

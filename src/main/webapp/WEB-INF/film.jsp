@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,21 +7,18 @@
 <title>Film Details</title>
 </head>
 <body>
-<h1>Film Details</h1>
+	<h1>Film Details</h1>
+	<p>${film.toString()}</p>
+	<br>
 
-${film.toString()}
-<br>
+	<form action="index.html" type="submit" value="return"></form>
 
-<form action="index.html" type="submit"></form>
-
-<form action="deleteFilm" method="DELETE">
-      <input value="${film.id}" type="submit">
-      <br>
-      </form>
-      
-      <form action="EditFilm.html" method="EDIT">
-      <input value="${film.id}" type="submit">
-      <br>
-      </form>
+	<form action="deleteFilm" method=POST>
+		<input type=“hidden” name=“filmId” value=“${film.id}" type="submit">
+	</form>
+	<br>
+	<form action="editFilm.do" method="GET">
+		<input type="hidden" name = "filmId" value="${film.id}" type="submit"><br>
+	</form>
 </body>
 </html>

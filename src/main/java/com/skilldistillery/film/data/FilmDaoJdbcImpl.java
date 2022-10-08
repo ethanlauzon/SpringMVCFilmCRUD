@@ -49,8 +49,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			int uc = pst.executeUpdate();
 			if (uc == 1) {
 				ResultSet filmKeys = pst.getGeneratedKeys();
-				System.out.println(uc + " film record created.");
-
 				if (filmKeys.next()) {
 					int newFilmId = filmKeys.getInt(1);
 					film.setId(newFilmId);
@@ -99,20 +97,21 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return false;
 	}
 
-	@Override
-	public Film updateFilm(int filmId, Film film) {
-		String user = "student";
-		String pass = "student";
-		String sql = "UPDATE FROM film WHERE film.id = ?";
-		
-//		Connection conn = DriverManager.getConnection(URL, user, pass);
-//		PreparedStatement pst = conn.prepareStatement(sql);
-//		pst.setInt(1, filmId);
+//	@Override
+//	public Film updateFilm(int filmId, Film film) {
+//		String user = "student";
+//		String pass = "student";
+//		String sql = "UPDATE FROM film WHERE film.id = ?";
 //		
-		
-		
-		return null;
-	}
+////		Connection conn = DriverManager.getConnection(URL, user, pass);
+////		PreparedStatement pst = conn.prepareStatement(sql);
+////		pst.setInt(1, filmId);
+////		
+//		film.setId(newFilmId);
+//
+//		
+//		return null;
+//	}
 
 	@Override
 	public Film findFilmById(int filmId) {
@@ -260,6 +259,12 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			System.err.println("e");
 		}
 		return films;
+	}
+
+	@Override
+	public Film updateFilm(int filmId, Film film) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
