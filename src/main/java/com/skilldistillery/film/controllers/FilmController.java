@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.film.data.FilmDAO;
+import com.skilldistillery.film.data.FilmDaoJdbcImpl;
 import com.skilldistillery.film.entities.Film;
 
 @Controller
@@ -33,11 +34,12 @@ public class FilmController {
 	// create jsp for success
 //	}
 
-	@RequestMapping(path = " ", method = RequestMethod.GET, params = "filmId")
+	@RequestMapping(path = "editFilm.do", method = RequestMethod.GET, params = "filmId")
 	public ModelAndView editFilm(int filmId) {
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("film", filmDao.findFilmById(filmId)); 
+		mv.setViewName("WEB-INF/editFilm.jsp");
 		return mv;
-
 	}
 
 //	@RequestMapping(path = " ", method = RequestMethod.GET, params = " ")
@@ -61,21 +63,21 @@ public class FilmController {
 //	public ModelAndView updateFilm(int filmId, String title, String description, ) {
 //		ModelAndView mv = new ModelAndView();
 //		Film newFilm = new Film(0, title, description, description, filmId, filmId, filmId, filmId, filmId, description, description, null, title, description)
-//		// find film
+//		filmdao.updateFilm(newFilm);
 //		// push params to mv
 //		mv.addObject("film", film);
 //		mv.setViewName("WEB-INF/editFilm.html");
 //		return mv;
 //	}
 
-//	@RequestMapping(path = " ", method = RequestMethod.GET, params = " ")
-//	public ModelAndView deleteFilm() {
-//		ModelAndView mv = new ModelAndView();
-//		Film film = filmDao.deleteDBFilm(null);
-//		mv.addObject("film", film);
-//		mv.setViewName("WEB-INF/film.jsp");
-//		return mv;
-//	}
+	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST, params = "filmId")
+	public ModelAndView deleteFilm(int filmId) {
+		ModelAndView mv = new ModelAndView();
+		boolean delete = filmDao.deleteDBFilm(filmDao.findFilmById(filmId));
+		mv.addObject("film", filmDao.findFilmById(filmId));
+		mv.setViewName("WEB-INF/film.jsp");
+		return mv;
+	}
 
 //	@RequestMapping(path = " ", method = RequestMethod.GET, params = " ")
 //	public ModelAndView searchByKey() {

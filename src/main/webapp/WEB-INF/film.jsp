@@ -13,12 +13,14 @@
 
 	<form action="index.html" type="submit" value="return"></form>
 
-	<form action="deleteFilm" method=POST>
-		<input type=“hidden” name=“filmId” value=“${film.id}" type="submit">
+	<form action="deleteFilm.do" method=POST>
+		<input type="number" hidden="true" name="filmId" value="${film.id }">
+		<input type="submit" value="delete">
 	</form>
 	<br>
 	<form action="editFilm.do" method="GET">
-		<input type="hidden" name = "filmId" value="${film.id}" type="submit"><br>
+		<input type="number" hidden="true" name="filmId" value="${film.id }">
+		<input type="submit" value="edit">
 	</form>
 </body>
 </html>

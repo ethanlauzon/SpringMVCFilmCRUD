@@ -107,7 +107,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 ////		PreparedStatement pst = conn.prepareStatement(sql);
 ////		pst.setInt(1, filmId);
 ////		
-//		film.setId(newFilmId);
+//		film.setId(newFilm.getTitle());
 //
 //		
 //		return null;

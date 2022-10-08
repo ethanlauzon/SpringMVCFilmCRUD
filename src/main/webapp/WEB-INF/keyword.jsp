@@ -15,7 +15,7 @@
       <input type=“hidden” name=“filmId” value=“${f.id”} type="submit">
       <br>
         <form action="editFilm" method="GET">
-      <input name = "filmId" value=“${f.id”} type="submit">
+      <input type="hidden" name = "filmId" value=“${f.id”} type="submit">
       </form>
       <br>
       </form>
