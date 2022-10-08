@@ -1,5 +1,6 @@
 package com.skilldistillery.film.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,21 +45,21 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = " ", method = RequestMethod.GET, params = " ")
-	public ModelAndView filmAdded() {
-		ModelAndView mv = new ModelAndView();
-	}
+//	@RequestMapping(path = " ", method = RequestMethod.GET, params = " ")
+//	public ModelAndView filmAdded() {
+//		ModelAndView mv = new ModelAndView();
+//	}
 
-	@RequestMapping(path = " ", method = RequestMethod.GET, params = "filmId")
-	public ModelAndView getInfoToUpdate(int Id) {
-		ModelAndView mv = new ModelAndView();
-		Film film = filmDao.findFilmById(0, null);
-		// find film
-		mv.addObject("title", film.getTitle());
-		mv.addObject("description", film.getDescription());
-		mv.setViewName("WEB-INF/editFilm.html");
-		return mv;
-	}
+//	@RequestMapping(path = " ", method = RequestMethod.GET, params = "filmId")
+//	public ModelAndView getInfoToUpdate(int Id) {
+//		ModelAndView mv = new ModelAndView();
+//		Film film = filmDao.findFilmById(0, null);
+//		// find film
+//		mv.addObject("title", film.getTitle());
+//		mv.addObject("description", film.getDescription());
+//		mv.setViewName("WEB-INF/editFilm.html");
+//		return mv;
+//	}
 	
 	
 
@@ -85,21 +86,21 @@ public class FilmController {
 		mv.setViewName("WEB-INF/film.jsp");
 		return mv;
 	}
-	@RequestMapping(path = "deleteFilm ", method = RequestMethod.GET, params = " ")
-	public ModelAndView deleteFilm() {
-		ModelAndView mv = new ModelAndView();
-		Film film = filmDao.deleteDBFilm(null);
-		mv.addObject("film", film);
-		mv.setViewName("WEB-INF/film.jsp");
-		return mv;
-	}
+//	@RequestMapping(path = "deleteFilm ", method = RequestMethod.GET, params = " ")
+//	public ModelAndView deleteFilm() {
+//		ModelAndView mv = new ModelAndView();
+//		Film film = filmDao.deleteDBFilm(null);
+//		mv.addObject("film", film);
+//		mv.setViewName("WEB-INF/film.jsp");
+//		return mv;
+//	}
 
-	@RequestMapping(path = "findFilmByKeyword ", method = RequestMethod.GET, params = " ")
-	public ModelAndView searchByKey() {
+	@RequestMapping(path = "findFilmByKeyword.do", method = RequestMethod.GET, params = "filmKeyword")
+	public ModelAndView searchByKey(String filmKeyword) {
+		List<Film> films = filmDao.findFilmByKey(filmKeyword);
 		ModelAndView mv = new ModelAndView();
-		Film film = filmDao.findFilmByKey(null);
-		mv.addObject("film", film);
-		mv.setViewName("WEB-INF/film.jsp");
+		mv.addObject("films", films);
+		mv.setViewName("WEB-INF/keyword.jsp");
 		return mv;
 	}
 
