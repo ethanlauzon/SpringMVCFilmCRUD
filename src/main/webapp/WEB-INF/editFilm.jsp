@@ -7,16 +7,16 @@
 <body>
     <form action="updateFilm.do" method="POST">
       <label for="title">Title:</label>
-      <input type="text" name="title" value="${film.title}">
+      <input type="text" name="title" value="${film.title }"/>
       <br>
       <label for="description">Description:</label>
-      <input type="text" name="description" value="${film.description}">
+      <input type="text" name="description" value="${film.description }"/>
       <br>
       <label for="releaseYear">Release Year:</label>
-      <input type="number" name="releaseYear" value="${film.releaseYear}">
+      <input type="number" name="releaseYear" value="${film.releaseYear }"/>
       <br>
       <label for="language">Language ID:</label>
-      <input type="number" name="language" value="${film.language}">
+      <input type="number" name="language" value="${film.language }"/>
       <br>
       <label for="rentalDuration">Rental Duration:</label>
       <input type="number" name="rentalDuration" value="${film.rentalDuration}">

@@ -32,9 +32,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 	@Override
 	public Film createDBFilm(Film film) {
 		Connection conn = null;
-		// TODO Auto-generated method stub
-		// get generated key and assign it as films id Film film = null;
-		// hardcode language id 
 		String user = "student";
 		String pass = "student";
 
@@ -98,7 +95,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		return false;
 	}
 
-
 	@Override
 	public boolean updateFilm(int filmId, Film film) {
 		String user = "student";
@@ -131,12 +127,11 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false; 
+			return false;
 		}
 
 		return false;
 	}
-
 
 	@Override
 	public Film findFilmById(int filmId) {
