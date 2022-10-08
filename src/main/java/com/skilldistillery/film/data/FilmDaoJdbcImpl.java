@@ -105,8 +105,11 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		String pass = "student";
 		String sql = "UPDATE FROM film WHERE film.id = ?";
 		
-		Connection conn = DriverManager.getConnection(URL, user, pass);
-		PreparedStatement pst = conn.prepareStatement(sql);
+//		Connection conn = DriverManager.getConnection(URL, user, pass);
+//		PreparedStatement pst = conn.prepareStatement(sql);
+//		pst.setInt(1, filmId);
+//		
+		
 		
 		return null;
 	}
