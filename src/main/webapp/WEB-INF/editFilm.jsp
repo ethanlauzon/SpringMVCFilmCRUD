@@ -7,10 +7,10 @@
 <body>
 
 <h2> Edit Film </h2>
-
+	<h4>Film ID: "${film.id }"</h4>
 <form action="updateFilm.do" method="POST">
 	
-	<br> Film ID: <input type="number" name="filmId" value="${film.id }"/> 
+	<br> <input type="hidden" name="filmId" value="${film.id }"/> 
 	<br> Title:	<input type="text" name="title" value="${film.title }"/> 
 	<br> Description: <input type="text" name="description" value="${film.description }"/> 
 	<br> Release Year: <input type="number" name="releaseYear" value="${film.releaseYear }"/>

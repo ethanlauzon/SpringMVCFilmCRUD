@@ -29,7 +29,8 @@ public class FilmController {
 	}
 
 
-	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST, params = {"title", "description", "releaseYear", "languageId", "rentalDuration", "rentalRate", "length", "replacementCost", "rating"})
+	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST, params = {"title", "description", "releaseYear", "languageId", 
+			"rentalDuration", "rentalRate", "length", "replacementCost", "rating"})
 	public ModelAndView createFilm(String title, String description, int releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating) {
 		Film newFilm = new Film();
@@ -42,16 +43,10 @@ public class FilmController {
 		newFilm.setRentalRate(rentalRate);
 		newFilm.setReplacementCost(replacementCost);
 		newFilm.setLength(length);
-		ModelAndView mv = new ModelAndView();
-		Film createdFilm = filmDao.createDBFilm(newFilm);
-		Boolean bool;
-		if (createdFilm != null) {
-			bool = true;
-		} else {
-			bool = false;
-		}
-		mv.addObject("film", createdFilm);
-		mv.addObject("bool", bool);
+		ModelAndView mv = new ModelAndView("WEB-INF/updateSuccess.jsp");
+		
+		mv.addObject("film", filmDao.createDBFilm(newFilm));
+		
 		return mv;
 	}
 
@@ -70,7 +65,7 @@ public class FilmController {
 	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating) {
 		ModelAndView mv = new ModelAndView();
-		Film newFilm = filmDao.findFilmById(filmId);
+		Film newFilm = new Film();
 		newFilm.setTitle(title);
 		newFilm.setDescription(description);
 		newFilm.setReleaseYear(releaseYear);
@@ -80,9 +75,9 @@ public class FilmController {
 		newFilm.setRentalRate(rentalRate);
 		newFilm.setReplacementCost(replacementCost);
 		newFilm.setLength(length);
-		
 		boolean bool = filmDao.updateFilm(filmId, newFilm);
 		mv.addObject("bool", bool);
+		mv.addObject("film", newFilm);
 		mv.setViewName("WEB-INF/updateSuccess.jsp");
 		return mv;
 	}
@@ -90,9 +85,10 @@ public class FilmController {
 	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST, params = "filmId")
 	public ModelAndView deleteFilm(int filmId) {
 		ModelAndView mv = new ModelAndView();
-		boolean delete = filmDao.deleteDBFilm(filmDao.findFilmById(filmId));
+		boolean bool = filmDao.deleteDBFilm(filmDao.findFilmById(filmId));
 		mv.addObject("film", filmDao.findFilmById(filmId));
-		mv.setViewName("WEB-INF/film.jsp");
+		mv.setViewName("WEB-INF/updateSuccess.jsp");
+		mv.addObject("bool", bool);
 		return mv;
 	}
 

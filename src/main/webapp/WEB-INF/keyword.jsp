@@ -8,21 +8,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<ul>
-<c:forEach var = "f" items="${films}">
-			<li>"${f.toString()}"</li>
-	</c:forEach>
-		</ul>
-			<form action="deleteFilm.do" method=POST>
-	Enter ID to delete film:
+	<form action="deleteFilm.do" method=POST>
+	Enter film ID to delete:
 		<input type="number" name="filmId">
 		<input type="submit" value="delete">
 	</form>
 	<br>
 	<form action="editFilm.do" method="GET">
-	Film ID to edit film:
+	Enter film ID to edit:
 		<input type="number" name="filmId">
 		<input type="submit" value="edit">
 	</form>
+		<ul>
+<c:forEach var = "f" items="${films}">
+			<li>"${f.toString()}"</li>
+	</c:forEach>
+		</ul>
 </body>
 </html>
