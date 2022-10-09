@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.film.data.FilmDAO;
 import com.skilldistillery.film.entities.Actor;
@@ -21,31 +22,36 @@ public class FilmController {
 	@RequestMapping(path = "showFilm.do", method = RequestMethod.GET, params = "filmId")
 	public ModelAndView showFilm(int filmId) {
 		ModelAndView mv = new ModelAndView();
-		Film film = filmDao.findFilmById(filmId);
+		Film film = filmDao.findFilmById(filmId);		
 		mv.addObject("film", film);
 		mv.setViewName("WEB-INF/film.jsp");
 		return mv;
 	}
 
 
-	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST, params = {"title", "description", "releaseYear", "languageId", "rentalDuration", "rentalRate", "length", "replacementCost", "rating", "specialFeatures"})
+	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST, params = {"title", "description", "releaseYear", "languageId", "rentalDuration", "rentalRate", "length", "replacementCost", "rating"})
 	public ModelAndView createFilm(String title, String description, int releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+			double rentalRate, int length, double replacementCost, String rating) {
 		Film newFilm = new Film();
 		newFilm.setTitle(title);
 		newFilm.setDescription(description);
 		newFilm.setReleaseYear(releaseYear);
 		newFilm.setRating(rating);
-		newFilm.setSpecialFeatures(specialFeatures);
 		newFilm.setLanguageId(languageId);
 		newFilm.setRentalDuration(rentalDuration);
 		newFilm.setRentalRate(rentalRate);
 		newFilm.setReplacementCost(replacementCost);
 		newFilm.setLength(length);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("film", filmDao.createDBFilm(newFilm));
-		
-		mv.setViewName("WEB-INF/updateSuccess.jsp");
+		Film createdFilm = filmDao.createDBFilm(newFilm);
+		Boolean bool;
+		if (createdFilm != null) {
+			bool = true;
+		} else {
+			bool = false;
+		}
+		mv.addObject("film", createdFilm);
+		mv.addObject("bool", bool);
 		return mv;
 	}
 

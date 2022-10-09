@@ -39,8 +39,8 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false);
 
-			String sql = "INSERT INTO film (title, rating, language_id, release_year, rental_duration, rental_rate, length, replacement_cost, rating, special_features) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO film (title, rating, language_id, release_year, rental_duration, rental_rate, length, replacement_cost) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement pst = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			pst.setString(1, film.getTitle());
 			pst.setString(2, film.getRating());
@@ -50,8 +50,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			pst.setDouble(6, film.getRentalRate());
 			pst.setInt(7, film.getLength());
 			pst.setDouble(8, film.getReplacementCost());
-			pst.setString(9, film.getRating());
-			pst.setString(10, film.getSpecialFeatures());
 			int uc = pst.executeUpdate();
 			if (uc == 1) {
 				ResultSet filmKeys = pst.getGeneratedKeys();
@@ -146,12 +144,12 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		Film film = null;
 		String user = "student";
 		String pass = "student";
-		String sql = "SELECT film.id, title, description, release_year, language_id, rental_duration, rental_rate, \n"
-				+ "length, replacement_cost, rating, special_features, language.name, category.name\n" + "FROM film\n"
-				+ "JOIN language ON language.id = film.language_id\n"
-				+ "JOIN film_category ON film_category.film_id = film.id\n"
-				+ "JOIN category ON category.id = film_category.category_id\n" + "WHERE film.id = ?";
-
+		String sql = "SELECT film.id, title, description, release_year, language_id, rental_duration, rental_rate, "
+				+ "length, replacement_cost, category.name, rating FROM film JOIN film_category ON "
+				+ "film_category.film_id = film.id JOIN category ON category.id = film_category.category_id WHERE film.id = ?";
+		
+		
+		
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 			PreparedStatement pst = conn.prepareStatement(sql);
@@ -160,7 +158,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 			if (rs.next()) {
 				film = new Film();
-				film.setId(rs.getInt("id"));
+				film.setId(rs.getInt("film.id"));
 				film.setTitle(rs.getString("title"));
 				film.setDescription(rs.getString("description"));
 				film.setReleaseYear(rs.getInt("release_year"));
@@ -170,17 +168,15 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				film.setLength(rs.getInt("length"));
 				film.setReplacementCost(rs.getDouble("replacement_cost"));
 				film.setRating(rs.getString("rating"));
-				film.setName(rs.getString("language.name"));
-				film.setSpecialFeatures(rs.getString("special_features"));
 				film.setCategory(rs.getString("category.name"));
-				film.setActorsInFilm(findActorsByFilmId(rs.getInt("id")));
+				film.setActorsInFilm(findActorsByFilmId(filmId));
 
 			}
 			rs.close();
 			pst.close();
 			conn.close();
 		} catch (SQLException e) {
-			System.err.println("e");
+			System.err.println(e);
 		}
 		return film;
 	}

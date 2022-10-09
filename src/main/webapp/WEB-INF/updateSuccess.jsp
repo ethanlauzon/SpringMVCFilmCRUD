@@ -8,11 +8,12 @@
 <title>Success</title>
 </head>
 <body>
-	<h1>Update Successful</h1>
+	<h1>Update Status</h1>
 	<br>
 	<c:choose>
   <c:when test="${bool == true}">
-   <p>Film updated.</p>
+   <p>Film updated.
+  Film ID: ${film.id }</p>
   </c:when>
   <c:otherwise>
     <p>Film not updated.</p>

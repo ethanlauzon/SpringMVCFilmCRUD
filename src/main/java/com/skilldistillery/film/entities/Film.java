@@ -46,7 +46,7 @@ public class Film {
 	@Override
 	public String toString() {
 		return "Film Title: " + title + "\nDescription: " + description + "\nRelease Year: " + releaseYear
-				+ "\nLanguage: " + name + "\nRating: " + rating + "\nStarring: " + actorsInFilm + "\nCategory: " + category + "\nFilm id: " + id;
+				+ "\nLanguage: " + name + "\nRating: " + rating + "\nFilm id: " + id;
 	}
 
 	public String printDetailsString() {

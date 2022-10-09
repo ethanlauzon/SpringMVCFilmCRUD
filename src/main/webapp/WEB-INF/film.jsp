@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Film Details</h1>
-	<p>${film.toString()}</p>
+	<p>${film.printDetailsString()}</p>
 	<br>
 
 	<form action="index.html" type="submit" value="return"></form>
