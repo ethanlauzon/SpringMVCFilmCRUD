@@ -11,6 +11,8 @@
 	<p>${film.toString()}</p>
 	<br>
 
+	<form action="index.html" type="submit" value="return"></form>
+
 	<form action="deleteFilm.do" method=POST>
 		<input type="number" hidden="true" name="filmId" value="${film.id }">
 		<input type="submit" value="delete">
@@ -20,7 +22,5 @@
 		<input type="number" hidden="true" name="filmId" value="${film.id }">
 		<input type="submit" value="edit">
 	</form>
-	<br>
-	<a href="index.html">Return</a>
 </body>
 </html>
