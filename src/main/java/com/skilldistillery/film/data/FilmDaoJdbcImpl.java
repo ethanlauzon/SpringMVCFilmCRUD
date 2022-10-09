@@ -45,7 +45,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 			pst.setString(1, film.getTitle());
 			pst.setString(2, film.getRating());
 			pst.setInt(3, film.getLanguageId());
-			pst.setString(4, film.getReleaseYear());
+			pst.setInt(4, film.getReleaseYear());
 			pst.setInt(5, film.getRentalDuration());
 			pst.setDouble(6, film.getRentalRate());
 			pst.setInt(7, film.getLength());
@@ -72,7 +72,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 					System.err.println("Error trying to rollback");
 				}
 			}
-			throw new RuntimeException("Error inserting actor " + film);
 		}
 		return film;
 	}
@@ -109,9 +108,9 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		String user = "student";
 		String pass = "student";
 		String sql = "UPDATE film SET title = ?, description = ?, release_year = ?, language_id = ?, "
-				+ "rental_duration = ?, rental_rate = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ?,"
+				+ "rental_duration = ?, rental_rate = ?, length = ?, replacement_cost = ?, rating = ?"
 				+ " WHERE film.id = ?";
-
+		
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 			PreparedStatement pst = conn.prepareStatement(sql);
@@ -119,16 +118,16 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 
 			pst.setString(1, film.getTitle());
 			pst.setString(2, film.getDescription());
-			pst.setString(3, film.getReleaseYear());
+			pst.setInt(3, film.getReleaseYear());
 			pst.setInt(4, film.getLanguageId());
 			pst.setInt(5, film.getRentalDuration());
 			pst.setDouble(6, film.getRentalRate());
 			pst.setInt(7, film.getLength());
 			pst.setDouble(8, film.getReplacementCost());
 			pst.setString(9, film.getRating());
-			pst.setString(10, film.getSpecialFeatures());
+//			pst.setString(10, film.getSpecialFeatures());
+			pst.setInt(10, filmId);
 			int uce = pst.executeUpdate();
-			pst.setInt(11, filmId);
 			if (uce == 1) {
 				System.out.println(uce + " Film Succesfully updated");
 				conn.commit();
@@ -164,7 +163,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				film.setId(rs.getInt("id"));
 				film.setTitle(rs.getString("title"));
 				film.setDescription(rs.getString("description"));
-				film.setReleaseYear(rs.getString("release_year"));
+				film.setReleaseYear(rs.getInt("release_year"));
 				film.setLanguageId(rs.getInt("language_id"));
 				film.setRentalDuration(rs.getInt("rental_duration"));
 				film.setRentalRate(rs.getDouble("rental_rate"));
@@ -269,7 +268,7 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 				film.setId(rs.getInt("id"));
 				film.setTitle(rs.getString("title"));
 				film.setDescription(rs.getString("description"));
-				film.setReleaseYear(rs.getString("release_year"));
+				film.setReleaseYear(rs.getInt("release_year"));
 				film.setLanguageId(rs.getInt("language_id"));
 				film.setRentalDuration(rs.getInt("rental_duration"));
 				film.setRentalRate(rs.getDouble("rental_rate"));
