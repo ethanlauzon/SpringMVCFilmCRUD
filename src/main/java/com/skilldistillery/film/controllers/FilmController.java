@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.film.data.FilmDAO;
-
+import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
 @Controller
@@ -28,10 +28,13 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "NewFilmForm.html", method = RequestMethod.POST, params = " ")
-	public ModelAndView createFilm(Film film) {
+	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST, params = "film")
+	public ModelAndView createFilm(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,
+			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
+			List<Actor> actorsInFilm, String name, String category) {
+		Film newFilm = new Film(id, title, description, releaseYear, languageId, rentalDuration, rentalRate, length, replacementCost, rating, specialFeatures, actorsInFilm, name, category);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("film", filmDao.createDBFilm(film));
+		mv.addObject("film", filmDao.createDBFilm(newFilm));
 		
 		return mv;
 	// create jsp for success
@@ -73,6 +76,7 @@ public class FilmController {
 		Film newFilm = new Film(0, title, description, releaseYear, languageId, rentalDuration, rentalRate, length, replacementCost, rating, specialFeatures, null, name, category);
 		filmDao.updateFilm(filmId, newFilm);
 		mv.setViewName("WEB-INF/updateSuccess.jsp");
+		
 		
 
 		return mv;
