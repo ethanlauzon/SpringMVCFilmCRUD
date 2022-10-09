@@ -27,7 +27,8 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "createFilm", method = RequestMethod.POST, params = "film")
+
+	@RequestMapping(path = "createFilm", method = RequestMethod.POST, params = "filmId")
 	public ModelAndView createFilm(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
 			List<Actor> actorsInFilm, String name, String category) {
@@ -35,8 +36,8 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("film", filmDao.createDBFilm(newFilm));
 		
+		mv.setViewName("WEB-INF/updateSuccess.jsp");
 		return mv;
-	// create jsp for success
 	}
 
 	@RequestMapping(path = "editFilm.do", method = RequestMethod.GET, params = "filmId")
@@ -69,15 +70,10 @@ public class FilmController {
 	public ModelAndView modifyFilm(int filmId, String title, String description, String releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
 			String name, String category) {
-		
 		ModelAndView mv = new ModelAndView();
-		
 		Film newFilm = new Film(0, title, description, releaseYear, languageId, rentalDuration, rentalRate, length, replacementCost, rating, specialFeatures, null, name, category);
 		filmDao.updateFilm(filmId, newFilm);
 		mv.setViewName("WEB-INF/updateSuccess.jsp");
-		
-		
-
 		return mv;
 	}
 
@@ -98,14 +94,4 @@ public class FilmController {
 		mv.setViewName("WEB-INF/keyword.jsp");
 		return mv;
 	}
-//
-//	@RequestMapping(path = " ", method = RequestMethod.GET, params = " ")
-//	public ModelAndView searchById() {
-//		ModelAndView mv = new ModelAndView();
-//		Film film = filmDao.findFilmById(0);
-//		mv.addObject("film", film);
-//		mv.setViewName("WEB-INF/film.jsp");
-//		return mv;
-//	}
-
 }
