@@ -28,7 +28,7 @@ public class FilmController {
 		return mv;
 	}
 
-	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST, params = "film")
+	@RequestMapping(path = "createFilm", method = RequestMethod.POST, params = "film")
 	public ModelAndView createFilm(int id, String title, String description, String releaseYear, int languageId, int rentalDuration,
 			double rentalRate, int length, double replacementCost, String rating, String specialFeatures,
 			List<Actor> actorsInFilm, String name, String category) {
@@ -99,14 +99,14 @@ public class FilmController {
 		mv.setViewName("WEB-INF/keyword.jsp");
 		return mv;
 	}
-
-	@RequestMapping(path = " ", method = RequestMethod.GET, params = " ")
-	public ModelAndView searchById() {
-		ModelAndView mv = new ModelAndView();
-		Film film = filmDao.findFilmById(0);
-		mv.addObject("film", film);
-		mv.setViewName("WEB-INF/film.jsp");
-		return mv;
-	}
+//
+//	@RequestMapping(path = " ", method = RequestMethod.GET, params = " ")
+//	public ModelAndView searchById() {
+//		ModelAndView mv = new ModelAndView();
+//		Film film = filmDao.findFilmById(0);
+//		mv.addObject("film", film);
+//		mv.setViewName("WEB-INF/film.jsp");
+//		return mv;
+//	}
 
 }
