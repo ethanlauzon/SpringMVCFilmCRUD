@@ -101,12 +101,14 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST, params = "filmId")
-	public ModelAndView deleteFilm(int filmId) {
+	public ModelAndView deleteFilm(int filmId, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("film", filmDao.findFilmById(filmId));
+//		mv.addObject("film", filmDao.findFilmById(filmId));
 		boolean bool = filmDao.deleteDBFilm(filmDao.findFilmById(filmId));
-		mv.addObject("delete", bool);
-		mv.setViewName("WEB-INF/updateSuccess.jsp");
+//		mv.addObject("delete", bool);
+		redir.addFlashAttribute("delete", bool);
+		redir.addFlashAttribute("film", filmDao.findFilmById(filmId));
+		mv.setViewName("redirect:filmCreated.do");
 		return mv;
 	}
 

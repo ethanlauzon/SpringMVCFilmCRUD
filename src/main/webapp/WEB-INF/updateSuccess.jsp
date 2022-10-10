@@ -12,7 +12,7 @@
 	<br>
 <c:choose>
   <c:when test="${delete == true}">
-    <p>Film deleted: ${film.id }</p>
+    <p>Film deleted.</p>
   </c:when>
   <c:when test="${bool == true}">
    <p>Film edited: ${film.id }</p>
