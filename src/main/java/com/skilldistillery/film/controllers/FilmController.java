@@ -78,7 +78,7 @@ public class FilmController {
 	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST, params = { "filmId", "title", "description",
 			"releaseYear", "languageId", "rentalDuration", "rentalRate", "length", "replacementCost", "rating" })
 	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId,
-			int rentalDuration, double rentalRate, int length, double replacementCost, String rating) {
+			int rentalDuration, double rentalRate, int length, double replacementCost, String rating, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
 		Film newFilm = new Film();
 		newFilm.setTitle(title);
@@ -91,9 +91,12 @@ public class FilmController {
 		newFilm.setReplacementCost(replacementCost);
 		newFilm.setLength(length);
 		boolean bool = filmDao.updateFilm(filmId, newFilm);
-		mv.addObject("bool", bool);
-		mv.addObject("film", filmDao.findFilmById(filmId));
-		mv.setViewName("WEB-INF/updateSuccess.jsp");
+//		mv.addObject("bool", bool);
+//		mv.addObject("film", filmDao.findFilmById(filmId));
+//		mv.setViewName("WEB-INF/updateSuccess.jsp");
+		redir.addFlashAttribute("bool", bool);
+		redir.addFlashAttribute("film", filmDao.findFilmById(filmId));
+		mv.setViewName("redirect:filmCreated.do");
 		return mv;
 	}
 
