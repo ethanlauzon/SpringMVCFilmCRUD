@@ -5,9 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Keyword results</title>
 </head>
 <body>
+<h2>Related films</h2>
 	<form action="deleteFilm.do" method=POST>
 	Enter film ID to delete:
 		<input type="number" name="filmId">
@@ -21,7 +22,18 @@
 	</form>
 		<ul>
 <c:forEach var = "f" items="${films}">
-			<li>"${f.toString()}"</li>
+   <br>
+ 	<li><strong> Title: ${f.title}</strong> </li>
+   <li> Description: ${f.description} </li>
+   <li> Release Year: ${f.releaseYear} </li>
+   <li> Language ID: ${f.languageId} </li>
+   <li> Rental Duration: ${f.rentalDuration} </li>
+   <li> Rental Rate: ${f.rentalRate} </li>
+   <li> Length: ${f.length} </li>
+   <li> Replacement Cost: ${f.replacementCost} </li>
+   <li> Starring: ${f.actorsInFilm} </li>
+   <li> ID: ${f.id} </li>
+   <br>
 	</c:forEach>
 		</ul>
 </body>

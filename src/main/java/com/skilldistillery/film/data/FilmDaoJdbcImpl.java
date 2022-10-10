@@ -147,9 +147,6 @@ public class FilmDaoJdbcImpl implements FilmDAO {
 		String sql = "SELECT film.id, title, description, release_year, language_id, rental_duration, rental_rate, "
 				+ "length, replacement_cost, category.name, rating FROM film LEFT JOIN film_category ON "
 				+ "film_category.film_id = film.id LEFT JOIN category ON category.id = film_category.category_id WHERE film.id = ?";
-		
-		
-		
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
 			PreparedStatement pst = conn.prepareStatement(sql);

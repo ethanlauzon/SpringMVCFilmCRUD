@@ -50,10 +50,10 @@ public class Film {
 	}
 
 	public String printDetailsString() {
-		return "Film id: " + id + ", Title: " + title + " Description: " + description + ", \nRelease Year: "
-				+ releaseYear + ", language Id: " + languageId + ", Rental Duration: " + rentalDuration
-				+ ", Rental Rate: " + rentalRate + ", length: " + length + ", replacement Cost:" + replacementCost
-				+ ", Language: " + name + ", \nrating: " + rating + ", Special Features: " + specialFeatures
+		return "Film id: " + id + ", \nTitle: " + title + " \nDescription: " + description + ", \nRelease Year: "
+				+ releaseYear + ", \nlanguage Id: " + languageId + ", \nRental Duration: " + rentalDuration
+				+ ", \nRental Rate: " + rentalRate + ", \nlength: " + length + ", \nreplacement Cost:" + replacementCost
+				+ ", \nLanguage: " + name + ", \nrating: " + rating + ", \nSpecial Features: " + specialFeatures
 				+ ", \nCategory: " + category + ", \nActors: " + actorsInFilm;
 	}
 

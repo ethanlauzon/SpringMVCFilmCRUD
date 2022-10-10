@@ -44,8 +44,15 @@ public class FilmController {
 		newFilm.setReplacementCost(replacementCost);
 		newFilm.setLength(length);
 		ModelAndView mv = new ModelAndView("WEB-INF/updateSuccess.jsp");
-		
-		mv.addObject("film", filmDao.createDBFilm(newFilm));
+		Film updatedFilm = filmDao.createDBFilm(newFilm);
+		Boolean created;
+		if (updatedFilm != null) {
+			created = true;
+		} else {
+			created = false;
+		}
+		mv.addObject("created", created);
+		mv.addObject("film", updatedFilm);
 		
 		return mv;
 	}
@@ -55,7 +62,6 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		Film edit = filmDao.findFilmById(filmId);
 		mv.addObject("film", filmDao.findFilmById(filmId));
-		System.out.println(edit);
 		mv.setViewName("WEB-INF/editFilm.jsp");
 		return mv;
 	}
@@ -77,7 +83,7 @@ public class FilmController {
 		newFilm.setLength(length);
 		boolean bool = filmDao.updateFilm(filmId, newFilm);
 		mv.addObject("bool", bool);
-		mv.addObject("film", newFilm);
+		mv.addObject("film", filmDao.findFilmById(filmId));
 		mv.setViewName("WEB-INF/updateSuccess.jsp");
 		return mv;
 	}
@@ -85,10 +91,10 @@ public class FilmController {
 	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST, params = "filmId")
 	public ModelAndView deleteFilm(int filmId) {
 		ModelAndView mv = new ModelAndView();
-		boolean bool = filmDao.deleteDBFilm(filmDao.findFilmById(filmId));
 		mv.addObject("film", filmDao.findFilmById(filmId));
+		boolean bool = filmDao.deleteDBFilm(filmDao.findFilmById(filmId));
+		mv.addObject("delete", bool);
 		mv.setViewName("WEB-INF/updateSuccess.jsp");
-		mv.addObject("bool", bool);
 		return mv;
 	}
 

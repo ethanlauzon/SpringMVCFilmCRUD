@@ -12,15 +12,24 @@
 	<h1>Film Details</h1>
 	<c:choose>
     <c:when test="${!empty film}">
-   <p>
-  ${film.printDetailsString()}</p>
+   <ul>
+   <li> Title: ${film.title} </li>
+   <li> Description: ${film.description} </li>
+   <li> Release Year: ${film.releaseYear} </li>
+   <li> Language ID: ${film.languageId} </li>
+   <li> Rental Duration: ${film.rentalDuration} </li>
+   <li> Rental Rate: ${film.rentalRate} </li>
+   <li> Length: ${film.length} </li>
+   <li> Replacement Cost: ${film.replacementCost} </li>
+   <li> Starring: ${film.actorsInFilm} </li>
+   <li> ID: ${film.id} </li>
+   </ul>
   </c:when>
   
   <c:otherwise>
     <p>No film found.</p>
   </c:otherwise>
-</c:choose>
-	
+</c:choose>	
 
 	<form action="index.html" type="submit" value="return"></form>
 
