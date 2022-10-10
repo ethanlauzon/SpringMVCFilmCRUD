@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.skilldistillery.film.data.FilmDAO;
 import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
+
 // test push
 @Controller
 public class FilmController {
@@ -22,17 +23,16 @@ public class FilmController {
 	@RequestMapping(path = "showFilm.do", method = RequestMethod.GET, params = "filmId")
 	public ModelAndView showFilm(int filmId) {
 		ModelAndView mv = new ModelAndView();
-		Film film = filmDao.findFilmById(filmId);		
+		Film film = filmDao.findFilmById(filmId);
 		mv.addObject("film", film);
 		mv.setViewName("WEB-INF/film.jsp");
 		return mv;
 	}
 
-
-	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST, params = {"title", "description", "releaseYear", "languageId", 
-			"rentalDuration", "rentalRate", "length", "replacementCost", "rating"})
-	public ModelAndView createFilm(String title, String description, int releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating) {
+	@RequestMapping(path = "createFilm.do", method = RequestMethod.POST, params = { "title", "description",
+			"releaseYear", "languageId", "rentalDuration", "rentalRate", "length", "replacementCost", "rating" })
+	public ModelAndView createFilm(String title, String description, int releaseYear, int languageId,
+			int rentalDuration, double rentalRate, int length, double replacementCost, String rating, RedirectAttributes redir) {
 		Film newFilm = new Film();
 		newFilm.setTitle(title);
 		newFilm.setDescription(description);
@@ -43,7 +43,7 @@ public class FilmController {
 		newFilm.setRentalRate(rentalRate);
 		newFilm.setReplacementCost(replacementCost);
 		newFilm.setLength(length);
-		ModelAndView mv = new ModelAndView("WEB-INF/updateSuccess.jsp");
+		ModelAndView mv = new ModelAndView();
 		Film updatedFilm = filmDao.createDBFilm(newFilm);
 		Boolean created;
 		if (updatedFilm != null) {
@@ -51,10 +51,19 @@ public class FilmController {
 		} else {
 			created = false;
 		}
-		mv.addObject("created", created);
-		mv.addObject("film", updatedFilm);
-		
+		redir.addFlashAttribute("created", created);
+		redir.addFlashAttribute("film", updatedFilm);
+//		mv.addObject("created", created);
+//		mv.addObject("film", updatedFilm);
+		mv.setViewName("redirect:filmCreated.do");
 		return mv;
+	}
+
+	@RequestMapping(path = "filmCreated.do", method = RequestMethod.GET)
+	public ModelAndView created() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("WEB-INF/updateSuccess.jsp");
+		return mv; // redirect to new mapping
 	}
 
 	@RequestMapping(path = "editFilm.do", method = RequestMethod.GET, params = "filmId")
@@ -66,10 +75,10 @@ public class FilmController {
 		return mv;
 	}
 
-
-	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST, params = {"filmId", "title", "description", "releaseYear", "languageId", "rentalDuration", "rentalRate", "length", "replacementCost", "rating"})
-	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating) {
+	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST, params = { "filmId", "title", "description",
+			"releaseYear", "languageId", "rentalDuration", "rentalRate", "length", "replacementCost", "rating" })
+	public ModelAndView modifyFilm(int filmId, String title, String description, int releaseYear, int languageId,
+			int rentalDuration, double rentalRate, int length, double replacementCost, String rating) {
 		ModelAndView mv = new ModelAndView();
 		Film newFilm = new Film();
 		newFilm.setTitle(title);
